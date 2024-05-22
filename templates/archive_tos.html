@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Archived ToS Data{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Archived Terms of Service Data</h1>
+    <form action="{{ url_for('archive_tos') }}" method="get">
+        <input type="text" name="search" placeholder="Search by URL or content" value="{{ search_query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if archives %}
+        {% for archive in archives %}
+            <div class="card mb-3">
+                <div class="card-header">
+                    <a href="{{ url_for('archive_details', archive_id=archive.archive_id) }}">Website: {{ archive.url }}</a>
+                </div>
+                <div class="card-body">
+                    <p class="card-text small">{{ archive.terms_content[:300] }}...</p>
+                    <p class="card-text"><small class="text-muted">Archived on: {{ archive.date_recorded }}</small></p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No archived terms of service data found.</p>
+    {% endif %}
+</div>
+{% endblock %}

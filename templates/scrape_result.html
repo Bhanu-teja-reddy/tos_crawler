@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Scrape Result{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Scrape Result</h1>
+    <div class="alert {% if message == 'Terms of Service saved successfully!' %}alert-success{% else %}alert-danger{% endif %}" role="alert">
+        {{ message }}
+    </div>
+    {% if content %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Scraped Content</h5>
+            <p class="card-text">{{ content }}</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Website URL: {{ url }}</small><br>
+            <small class="text-muted">Time of Scrape: {{ time_scraped }}</small>
+        </div>
+    </div>
+    {% endif %}
+    <a href="{{ url_for('home') }}" class="btn btn-primary mt-3">Back to Home</a>
+</div>
+{% endblock %}

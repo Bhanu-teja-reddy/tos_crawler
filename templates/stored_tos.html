@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Stored ToS Data{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Stored Terms of Service Data</h1>
+    <form action="{{ url_for('stored_tos') }}" method="post">
+        <input type="text" name="search" placeholder="Search by URL or content" value="{{ search_query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if tos_entries %}
+        {% for entry in tos_entries %}
+            <div class="card mb-3">
+                <div class="card-header">
+                    <a href="{{ url_for('tos_details', tos_id=entry.tos_id) }}">Website: {{ entry.url }}</a>
+                </div>
+                <form action="{{ url_for('submit_url') }}" method="post">
+                    <input type="hidden" name="url" value="{{ entry.url }}">
+                    <input type="hidden" name="tos_id" value="{{ entry.tos_id }}">
+                    <button type="submit" class="btn btn-primary">Recrawl Website</button>
+                </form>
+                <div class="card-body">
+                    <p class="card-text small">{{ entry.content[:300] }}...</p>
+                    <p class="card-text"><small class="text-muted">Recorded on: {{ entry.date_recorded }}</small></p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No terms of service data found.</p>
+    {% endif %}
+</div>
+{% endblock %}

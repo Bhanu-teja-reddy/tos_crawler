@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Archived ToS Details
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Archived Terms of Service Details</h1>
+    <div class="details-card">
+        <h2>Website URL: <a href="{{ entry.url }}">{{ entry.url }}</a></h2>
+        <p><strong>Date Recorded:</strong> {{ entry.date_recorded }}</p>
+        <p><strong>Content Hash:</strong> {{ entry.content_hash }}</p>
+        <div>
+            <h3>Content:</h3>
+            <p>{{ entry.content }}</p>
+        </div>
+        <a href="{{ url_for('archive_tos') }}" class="btn btn-primary">Back to Archive List</a>
+    </div>
+</div>
+{% endblock %}

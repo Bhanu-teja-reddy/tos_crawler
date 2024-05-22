@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Terms of Service Details
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Terms of Service Details</h1>
+    <div class="details-card">
+        <h2>Website URL: <a href="{{ entry.url }}">{{ entry.url }}</a></h2>
+        <p><strong>Scraped on:</strong> {{ entry.date_recorded }}</p>
+        <form action="" method="post">
+            <input type="hidden" name="action" value="update">
+            <textarea name="note" rows="4" cols="50">{{ entry.notes }}</textarea>
+            <button type="submit">Save Note</button>
+        </form>
+        <form action="" method="post">
+            <input type="hidden" name="action" value="delete">
+            <button type="submit">Delete Note</button>
+        </form>
+        <p><strong>Content:</strong> {{ entry.content }}</p>
+
+        
+
+        <a href="{{ url_for('stored_tos') }}" class="btn btn-primary">Back to Stored ToS</a>
+    </div>
+    {% if message %}
+    <div class="alert alert-info">{{ message }}</div>
+    {% endif %}
+</div>
+{% endblock %}

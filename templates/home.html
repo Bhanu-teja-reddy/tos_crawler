@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div style="text-align: center;">
+    <h1>Welcome to the ToS Scraper</h1>
+    <form action="/submit_url" method="post">
+        <input type="text" class="form-control mb-2" name="url" placeholder="Enter URL here" style="width: 50%; margin: auto;">
+        <button type="submit" class="btn btn-primary">Scrape ToS</button>
+    </form>
+</div>
+{% endblock %}
